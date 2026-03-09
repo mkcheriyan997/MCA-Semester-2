@@ -1,0 +1,6 @@
+SET VERIFY OFF;
+SET SERVEROUTPUT ON;
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('The maximum is: ' || GREATEST(&num1, &num2));
+END;
+/
