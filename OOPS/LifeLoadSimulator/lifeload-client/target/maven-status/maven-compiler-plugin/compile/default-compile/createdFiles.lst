@@ -1,0 +1,12 @@
+com\lifeload\client\ui\LoginScreen.class
+com\lifeload\client\ui\MiniGameScreen.class
+com\lifeload\client\service\GameService.class
+com\lifeload\client\ui\RegisterScreen.class
+com\lifeload\client\service\AuthService.class
+com\lifeload\client\ui\LeaderboardScreen.class
+com\lifeload\client\ui\DashboardScreen.class
+com\lifeload\client\ui\MarketScreen.class
+com\lifeload\client\service\SessionManager.class
+com\lifeload\client\ui\CharacterCreationScreen.class
+com\lifeload\client\LifeLoadApp.class
+com\lifeload\client\ui\TimelineScreen.class
