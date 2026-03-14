@@ -1,5 +1,0 @@
-﻿Testing with user pytest_1356
-HTTP Error 404: {"timestamp":"2026-03-12T17:16:20.088+00:00","status":404,"error":"Not Found","path":"/api/auth/register"}
-Register: None
-HTTP Error 404: {"timestamp":"2026-03-12T17:16:20.095+00:00","status":404,"error":"Not Found","path":"/api/auth/login"}
-Login: Failed
