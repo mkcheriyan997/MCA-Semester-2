@@ -196,39 +196,101 @@ public class MiniGameScreen {
 
         final int[] timeSeconds = {20};
         final int[] gameScore = {0};
+        
         Timeline gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
+
+        // Background penalty to prevent spam clicking
+        gamePane.setOnMouseClicked(e -> {
+            if (e.getTarget() == gamePane) {
+                gameScore[0] = Math.max(0, gameScore[0] - 5);
+                liveScoreLbl.setText("Score: " + gameScore[0] + " [MISCLICK -5]");
+                liveScoreLbl.setStyle("-fx-text-fill: #ffaa00;");
+            }
+        });
         
         KeyFrame spawnFrame = new KeyFrame(Duration.millis(800), e -> {
-            boolean isTask = new Random().nextDouble() > 0.3;
-            javafx.scene.shape.Circle c = new javafx.scene.shape.Circle(25);
+            Random rnd = new Random();
+            // Higher chance of distractions (red) as time goes on
+            double redChance = 0.3 + ( (20 - timeSeconds[0]) * 0.02 ); // Starts at 30%, ends at 70%
+            boolean isTask = rnd.nextDouble() > redChance;
+            
+            double radius = 25;
+            javafx.scene.shape.Circle c = new javafx.scene.shape.Circle(radius);
             c.setFill(isTask ? javafx.scene.paint.Color.web("#3fb950") : javafx.scene.paint.Color.web("#f85149"));
-            c.setCenterX(50 + new Random().nextInt(500));
-            c.setCenterY(50 + new Random().nextInt(300));
+            
+            c.setCenterX(100 + rnd.nextInt(400));
+            c.setCenterY(100 + rnd.nextInt(200));
             c.setCursor(javafx.scene.Cursor.HAND);
+            
+            // "Glitch" Mechanic: Green circles might turn red right before they disappear
+            boolean willGlitch = isTask && rnd.nextDouble() < ( (20 - timeSeconds[0]) * 0.03 ); // Up to 60% glitch chance at end
+            
+            final boolean[] isCurrentlyTask = {isTask};
+
             c.setOnMouseClicked(ev -> {
-                if (isTask) gameScore[0] += 10; else gameScore[0] -= 15;
+                ev.consume(); // Prevent background click penalty
+                int points = isCurrentlyTask[0] ? 10 : -30; // Harsher penalty for red
+                gameScore[0] += points;
                 liveScoreLbl.setText("Score: " + gameScore[0]);
+                liveScoreLbl.setStyle("-fx-text-fill: " + (points > 0 ? "#3fb950" : "#f85149") + ";");
                 gamePane.getChildren().remove(c);
             });
+            
             gamePane.getChildren().add(c);
-            javafx.animation.FadeTransition ft = new javafx.animation.FadeTransition(Duration.millis(1500), c);
+            
+            // Movement/Drift Mechanic: Circles drift in a random direction
+            double dx = (rnd.nextDouble() - 0.5) * 2.5; 
+            double dy = (rnd.nextDouble() - 0.5) * 2.5;
+            
+            Timeline drift = new Timeline(new KeyFrame(Duration.millis(20), ev -> {
+                c.setCenterX(c.getCenterX() + dx);
+                c.setCenterY(c.getCenterY() + dy);
+            }));
+            drift.setCycleCount(Timeline.INDEFINITE);
+            drift.play();
+
+            // Stabilized fade speed (not getting too fast)
+            double fadeMs = 1500; 
+            javafx.animation.FadeTransition ft = new javafx.animation.FadeTransition(Duration.millis(fadeMs), c);
             ft.setFromValue(1.0); ft.setToValue(0.0);
-            ft.setOnFinished(ev -> gamePane.getChildren().remove(c));
+            
+            if (willGlitch) {
+                // Glitch to red at 70% of its lifetime
+                Timeline glitchTimer = new Timeline(new KeyFrame(Duration.millis(fadeMs * 0.7), ev -> {
+                    if (gamePane.getChildren().contains(c)) {
+                        c.setFill(javafx.scene.paint.Color.web("#f85149")); // Turn red
+                        isCurrentlyTask[0] = false;
+                        c.setStroke(javafx.scene.paint.Color.WHITE); // Flash white to alert glitch
+                        c.setStrokeWidth(3);
+                    }
+                }));
+                glitchTimer.play();
+            }
+
+            ft.setOnFinished(ev -> {
+                drift.stop();
+                gamePane.getChildren().remove(c);
+            });
             ft.play();
         });
         
         Timeline timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
             timeSeconds[0]--;
             timerLbl.setText("Time: " + timeSeconds[0] + "s");
-            if (timeSeconds[0] <= 0) { gameLoop.stop(); showFocusResult(stage, gameScore[0], onComplete); }
+            
+            // Speed up the spawn frequency (but not the fade speed)
+            gameLoop.setRate(1.0 + (20 - timeSeconds[0]) * 0.1); 
+            
+            if (timeSeconds[0] <= 0) { 
+                gameLoop.stop(); 
+                showFocusResult(stage, gameScore[0], onComplete); 
+            }
         }));
         timer.setCycleCount(20);
         gameLoop.getKeyFrames().add(spawnFrame);
         stage.setScene(new Scene(root, 650, 550));
         stage.show();
-        gameLoop.play();
-        timer.play();
 
         Platform.runLater(() -> {
             Alert instruction = new Alert(Alert.AlertType.INFORMATION);
@@ -239,6 +301,10 @@ public class MiniGameScreen {
                     "• Avoid RED circles (-15 pts).\n" +
                     "• Reward: $10 per point and Motivation bonus.");
             instruction.showAndWait();
+            
+            // Start the game after user clicks OK
+            gameLoop.play();
+            timer.play();
         });
     }
 
