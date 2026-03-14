@@ -95,7 +95,7 @@ public class EconomyController {
 
     @PostMapping("/sell/{investmentId}")
     @Transactional
-    public ResponseEntity<?> sellInvestment(@PathVariable Long investmentId) {
+    public ResponseEntity<?> sellInvestment(@PathVariable("investmentId") Long investmentId) {
         try {
             User user = getCurrentUser();
             Optional<PlayerProfile> profileOpt = profileRepository.findByUser(user);

@@ -127,7 +127,7 @@ public class ActionProcessor {
 
             case "odd_jobs":
                 if (stats.getEnergy() >= 20) {
-                    stats.setMoney(stats.getMoney() + 50);
+                    stats.setMoney(stats.getMoney() + 250);
                     stats.setEnergy(stats.getEnergy() - 20);
                     stats.setStress(stats.getStress() + (int)(10 * stressResist));
                 } else {
@@ -137,7 +137,7 @@ public class ActionProcessor {
 
             case "hustle":
                 if (stats.getEnergy() >= 40) {
-                    stats.setMoney(stats.getMoney() + 150);
+                    stats.setMoney(stats.getMoney() + 450);
                     stats.setEnergy(stats.getEnergy() - 40);
                     stats.setStress(stats.getStress() + (int)(30 * stressResist));
                 } else {

@@ -24,22 +24,17 @@ public class MiniGameScreen {
     private int currentQuestion = 0;
     private Label scoreLbl;
     private Runnable onComplete;
-
-    // ─── BUDGET QUIZ DATA ──────────────────────────────────────────────────────
-    private static final String[][] QUIZ_QUESTIONS = {
-        {"You earn $3000/month. Rent costs $1200. What % of income is rent?", "40%", "35%", "50%", "30%", "0"},
-        {"Which investment type has the highest risk and reward?", "Stocks", "Savings Account", "Bonds", "Real Estate", "0"},
-        {"Compound interest means...", "Earning interest on interest", "Flat rate interest", "Tax-free savings", "Government bonds", "0"},
-        {"Emergency fund should cover how many months of expenses?", "3-6 months", "1 month", "12 months", "No need", "0"},
-        {"Diversification in investing means...", "Spread across asset types", "Put all in one stock", "Only buy gold", "Avoid stocks", "0"},
-        {"What is a bull market?", "Rising stock prices", "Falling stock prices", "Stable prices", "High inflation", "0"},
-        {"Inflation of 5% means $100 today is worth __ in 1 year?", "$95 in buying power", "$105 more", "$100 same", "$90", "0"},
-    };
+    private String[][] sessionQuestions;
 
     public void showBudgetQuiz(Stage owner, Runnable onComplete) {
         this.onComplete = onComplete;
         this.score = 0;
         this.currentQuestion = 0;
+
+        // Select 10 random questions from the pool of 1000
+        List<String[]> pool = new java.util.ArrayList<>(java.util.Arrays.asList(QuizData.ALL_QUESTIONS));
+        java.util.Collections.shuffle(pool);
+        sessionQuestions = pool.subList(0, 10).toArray(new String[0][0]);
 
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -57,7 +52,7 @@ public class MiniGameScreen {
         Label title = new Label("💡 FINANCIAL LITERACY CHALLENGE");
         title.setFont(Font.font("Consolas", FontWeight.BOLD, 20));
         title.setStyle("-fx-text-fill: #d29922;");
-        scoreLbl = new Label("Score: 0/" + QUIZ_QUESTIONS.length);
+        scoreLbl = new Label("Score: 0/" + sessionQuestions.length);
         scoreLbl.setStyle("-fx-text-fill: #3fb950; -fx-font-size: 16px; -fx-font-weight: bold;");
         Region spacer = new Region(); HBox.setHgrow(spacer, Priority.ALWAYS);
         header.getChildren().addAll(title, spacer, scoreLbl);
@@ -81,23 +76,23 @@ public class MiniGameScreen {
             Alert instruction = new Alert(Alert.AlertType.INFORMATION);
             instruction.setTitle("Quiz Instructions");
             instruction.setHeaderText("Test Your Financial Literacy");
-            instruction.setContentText("Answer the following 7 questions. A perfect score grants a $500 reward and +10 Knowledge. Good luck!");
+            instruction.setContentText("Answer the following 10 questions. Each correct answer earns you credits and knowledge. Good luck!");
             instruction.showAndWait();
         });
     }
 
     private void showQuestion(Stage stage, VBox area, int index) {
         area.getChildren().clear();
-        if (index >= QUIZ_QUESTIONS.length) {
+        if (index >= sessionQuestions.length) {
             showQuizResult(stage, area);
             return;
         }
 
-        String[] q = QUIZ_QUESTIONS[index];
-        Label questionNum = new Label("Question " + (index + 1) + " of " + QUIZ_QUESTIONS.length);
+        String[] q = sessionQuestions[index];
+        Label questionNum = new Label("Question " + (index + 1) + " of " + sessionQuestions.length);
         questionNum.setStyle("-fx-text-fill: #8b949e; -fx-font-size: 13px;");
 
-        ProgressBar progress = new ProgressBar((double) index / QUIZ_QUESTIONS.length);
+        ProgressBar progress = new ProgressBar((double) index / sessionQuestions.length);
         progress.setMaxWidth(Double.MAX_VALUE);
         progress.setStyle("-fx-accent: #d29922;");
 
@@ -106,29 +101,45 @@ public class MiniGameScreen {
         questionLbl.setWrapText(true);
 
         VBox optionsBox = new VBox(10);
-        String[] options = {q[1], q[2], q[3], q[4]};
-        int correctIdx = Integer.parseInt(q[5]);
+        
+        // Setup options and identify the correct one
+        class Option {
+            String text;
+            boolean isCorrect;
+            Option(String t, boolean c) { this.text = t; this.isCorrect = c; }
+        }
+        
+        List<Option> opts = new java.util.ArrayList<>();
+        opts.add(new Option(q[1], true));
+        opts.add(new Option(q[2], false));
+        opts.add(new Option(q[3], false));
+        opts.add(new Option(q[4], false));
+        
+        java.util.Collections.shuffle(opts);
 
-        for (int i = 0; i < options.length; i++) {
-            final int optIdx = i;
-            Button btn = new Button((char)('A' + i) + ".  " + options[i]);
+        for (int i = 0; i < opts.size(); i++) {
+            Option opt = opts.get(i);
+            Button btn = new Button((char)('A' + i) + ".  " + opt.text);
             btn.setMaxWidth(Double.MAX_VALUE);
             btn.setStyle("-fx-background-color: #21262d; -fx-text-fill: #cdd9e5; -fx-font-size: 15px; -fx-padding: 14 20; -fx-border-color: #30363d; -fx-alignment: CENTER_LEFT;");
+            
             btn.setOnAction(e -> {
-                // Disable all buttons
                 optionsBox.getChildren().forEach(c -> c.setDisable(true));
-                boolean correct = (optIdx == correctIdx);
-                if (correct) {
+                if (opt.isCorrect) {
                     btn.setStyle("-fx-background-color: #1a4731; -fx-text-fill: #3fb950; -fx-font-size: 15px; -fx-padding: 14 20; -fx-border-color: #3fb950; -fx-alignment: CENTER_LEFT;");
                     score++;
                 } else {
                     btn.setStyle("-fx-background-color: #4d1f1f; -fx-text-fill: #f85149; -fx-font-size: 15px; -fx-padding: 14 20; -fx-border-color: #f85149; -fx-alignment: CENTER_LEFT;");
-                    // Highlight correct
-                    Button correctBtn = (Button) optionsBox.getChildren().get(correctIdx);
-                    correctBtn.setStyle("-fx-background-color: #1a4731; -fx-text-fill: #3fb950; -fx-font-size: 15px; -fx-padding: 14 20; -fx-border-color: #3fb950; -fx-alignment: CENTER_LEFT;");
+                    // Highlight the actual correct answer
+                    for (javafx.scene.Node node : optionsBox.getChildren()) {
+                        Button b = (Button) node;
+                        // Find the one that was correct
+                        if (b.getText().contains(q[1])) {
+                             b.setStyle("-fx-background-color: #1a4731; -fx-text-fill: #3fb950; -fx-font-size: 15px; -fx-padding: 14 20; -fx-border-color: #3fb950; -fx-alignment: CENTER_LEFT;");
+                        }
+                    }
                 }
-                scoreLbl.setText("Score: " + score + "/" + QUIZ_QUESTIONS.length);
-                // Auto-advance after 1.5s
+                scoreLbl.setText("Score: " + score + "/" + sessionQuestions.length);
                 Timeline t = new Timeline(new KeyFrame(Duration.millis(1500), ev -> {
                     currentQuestion++;
                     showQuestion(stage, area, currentQuestion);
@@ -143,15 +154,13 @@ public class MiniGameScreen {
 
     private void showQuizResult(Stage stage, VBox area) {
         area.getChildren().clear();
-        String[] grades = {"F", "F", "D", "C", "B", "B+", "A", "A+"};
-        String grade = grades[Math.min(score, grades.length - 1)];
-        double reward = score * 500.0;
+        double reward = score * 100.0; // $100 per correct answer
 
-        Label resultTitle = new Label(score >= 5 ? "🏆 EXCELLENT!" : score >= 3 ? "👍 GOOD EFFORT!" : "📚 KEEP LEARNING!");
+        Label resultTitle = new Label(score >= 8 ? "🏆 EXCELLENT!" : score >= 5 ? "👍 GOOD EFFORT!" : "📚 KEEP LEARNING!");
         resultTitle.setFont(Font.font("Consolas", FontWeight.BOLD, 30));
         resultTitle.setStyle("-fx-text-fill: #d29922;");
 
-        Label scoreDisplay = new Label(score + " / " + QUIZ_QUESTIONS.length + "  Grade: " + grade);
+        Label scoreDisplay = new Label(score + " / " + sessionQuestions.length);
         scoreDisplay.setFont(Font.font("Consolas", 22));
         scoreDisplay.setStyle("-fx-text-fill: #cdd9e5;");
 
@@ -163,7 +172,7 @@ public class MiniGameScreen {
         closeBtn.setOnAction(e -> {
             java.util.Map<String, Object> req = new java.util.HashMap<>();
             req.put("type", "BUDGET_QUIZ");
-            req.put("score", score);
+            req.put("score", (int)(score / 2)); // map 10 questions to the server's expected 5-point scale logic
             com.lifeload.client.service.GameService.playMiniGame(req);
             stage.close();
             if (onComplete != null) onComplete.run();

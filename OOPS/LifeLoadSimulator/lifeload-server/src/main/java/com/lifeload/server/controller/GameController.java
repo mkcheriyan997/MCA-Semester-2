@@ -35,6 +35,7 @@ public class GameController {
     @Autowired private TimelineEventRepository timelineEventRepository;
     @Autowired private DailyRewardRepository dailyRewardRepository;
     @Autowired private EventEngine eventEngine;
+    @Autowired private com.lifeload.server.engine.economy.EconomyEngine economyEngine;
     @Autowired private ObjectMapper objectMapper;
 
     private User getCurrentUser() {
@@ -52,6 +53,7 @@ public class GameController {
             Optional<PlayerProfile> existingProfile = profileRepository.findByUser(user);
             if (existingProfile.isPresent()) {
                 profileRepository.delete(existingProfile.get());
+                profileRepository.flush(); // Force immediate deletion of orphans
             }
 
             PlayerProfile profile = new PlayerProfile();
@@ -411,6 +413,11 @@ public class GameController {
 
     private void advanceTime(PlayerProfile profile) {
         profile.setCurrentWeek(profile.getCurrentWeek() + 1);
+        
+        // Update Market and Investments
+        economyEngine.updateMarketState();
+        economyEngine.processInvestments(profile);
+
         if (profile.getCurrentWeek() > 52) {
             profile.setCurrentWeek(1);
             profile.setAge(profile.getAge() + 1);

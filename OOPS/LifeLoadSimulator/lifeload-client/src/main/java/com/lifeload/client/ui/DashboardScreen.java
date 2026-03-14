@@ -409,8 +409,8 @@ public class DashboardScreen {
 
         if (gameData != null && gameData.has("stats") && gameData.get("stats").get("money").asDouble() < 100) {
             actionPanel.getChildren().addAll(
-                createActionCard("🧹 Odd Jobs", "Takes 20 energy, adds 10 stress, earns $50.", "odd_jobs", "#ffaa00"),
-                createActionCard("🔥 Desperate Hustle", "Takes 40 energy, adds 30 stress, earns $150.", "hustle", "#ff3333")
+                createActionCard("🧹 Odd Jobs", "Takes 20 energy, 10 stress. Earns $250 (~$100 net).", "odd_jobs", "#ffaa00"),
+                createActionCard("🔥 Desperate Hustle", "Takes 40 energy, 30 stress. Earns $450 (~$300 net).", "hustle", "#ff3333")
             );
         }
 

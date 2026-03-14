@@ -42,4 +42,19 @@ public class PlayerProfile {
 
     @Column(columnDefinition = "TEXT")
     private String pendingEventJson; // Stores JSON of an event waiting for a player choice
+
+    @OneToMany(mappedBy = "playerProfile", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Investment> investments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "playerProfile", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<NpcRival> rivals = new ArrayList<>();
+
+    @OneToMany(mappedBy = "playerProfile", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TimelineEvent> timelineEvents = new ArrayList<>();
+
+    @OneToMany(mappedBy = "playerProfile", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PlayerSkill> playerSkills = new ArrayList<>();
+
+    @OneToMany(mappedBy = "playerProfile", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PlayerAchievement> playerAchievements = new ArrayList<>();
 }
