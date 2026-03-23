@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AuthService {
-    private static final String API_URL = "http://localhost:8080/api/auth";
+    private static final String API_URL = "http://localhost:8081/api/auth";
     private static final HttpClient client = HttpClient.newHttpClient();
     private static final ObjectMapper mapper = new ObjectMapper();
 

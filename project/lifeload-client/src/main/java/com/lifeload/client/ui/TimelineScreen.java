@@ -49,7 +49,7 @@ public class TimelineScreen {
 
         try {
             HttpRequest req = HttpRequest.newBuilder()
-                    .uri(new URI("http://localhost:8080/api/game/timeline"))
+                    .uri(new URI("http://localhost:8081/api/game/timeline"))
                     .header("Authorization", "Bearer " + SessionManager.getToken())
                     .GET().build();
             HttpResponse<String> resp = client.send(req, HttpResponse.BodyHandlers.ofString());
@@ -153,7 +153,7 @@ public class TimelineScreen {
             claimBtn.setOnAction(e -> {
                 try {
                     HttpRequest req = HttpRequest.newBuilder()
-                            .uri(new URI("http://localhost:8080/api/game/claim-milestone/" + event.get("id").asLong()))
+                            .uri(new URI("http://localhost:8081/api/game/claim-milestone/" + event.get("id").asLong()))
                             .header("Authorization", "Bearer " + SessionManager.getToken())
                             .POST(HttpRequest.BodyPublishers.noBody()).build();
                     HttpResponse<String> resp = client.send(req, HttpResponse.BodyHandlers.ofString());

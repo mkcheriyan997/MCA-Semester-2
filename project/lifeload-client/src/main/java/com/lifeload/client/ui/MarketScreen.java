@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class MarketScreen {
 
-    private static final String API_URL = "http://localhost:8080/api/economy";
+    private static final String API_URL = "http://localhost:8081/api/economy";
     private static final HttpClient client = HttpClient.newHttpClient();
     private static final ObjectMapper mapper = new ObjectMapper();
 

@@ -20,7 +20,7 @@ import java.net.http.HttpResponse;
 
 public class LeaderboardScreen {
 
-    private static final String API_URL = "http://localhost:8080/api/leaderboard";
+    private static final String API_URL = "http://localhost:8081/api/leaderboard";
     private static final HttpClient client = HttpClient.newHttpClient();
     private static final ObjectMapper mapper = new ObjectMapper();
 

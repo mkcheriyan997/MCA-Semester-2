@@ -123,7 +123,7 @@ public class DashboardScreen {
     private void claimDailyReward() {
         try {
             HttpRequest req = HttpRequest.newBuilder()
-                    .uri(new URI("http://localhost:8080/api/game/daily-reward"))
+                    .uri(new URI("http://localhost:8081/api/game/daily-reward"))
                     .header("Authorization", "Bearer " + SessionManager.getToken())
                     .GET().build();
             HttpResponse<String> resp = client.send(req, HttpResponse.BodyHandlers.ofString());
@@ -174,7 +174,7 @@ public class DashboardScreen {
         new Thread(() -> {
             try {
                 HttpRequest req = HttpRequest.newBuilder()
-                        .uri(new URI("http://localhost:8080/api/game/rivals"))
+                        .uri(new URI("http://localhost:8081/api/game/rivals"))
                         .header("Authorization", "Bearer " + SessionManager.getToken())
                         .GET().build();
                 HttpResponse<String> resp = client.send(req, HttpResponse.BodyHandlers.ofString());
@@ -274,7 +274,7 @@ public class DashboardScreen {
             req.put("optionIndex", optionIndex);
 
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI("http://localhost:8080/api/game/event/choice"))
+                    .uri(new URI("http://localhost:8081/api/game/event/choice"))
                     .header("Content-Type", "application/json")
                     .header("Authorization", "Bearer " + SessionManager.getToken())
                     .POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(req)))
@@ -403,14 +403,14 @@ public class DashboardScreen {
     private void buildActionPanel() {
         actionPanel.getChildren().clear();
         actionPanel.getChildren().addAll(
-            createActionCard("💼 Corporate Grind",   "Cost: 20 Energy, ~15 Stress.\nGain: Money (based on Know), +1 Rep.", "work", "#00ffcc"),
-            createActionCard("📚 Deep Study",         "Cost: $50, 15 Energy, ~5 Stress.\nGain: +10 Knowledge, +3 Motivation.", "study", "#a855f7"),
-            createActionCard("🏋️ Bio-Optimization",   "Cost: $20, 10 Energy.\nGain: +15 Health, -15 Stress, +5 Conf.", "gym", "#ffcc00"),
-            createActionCard("🤝 Social Engagement",  "Cost: $100, 15 Energy.\nGain: +10 Rel, +20 Happy, -10 Stress.", "socialize", "#ff3366"),
-            createActionCard("😴 System Rest",         "Cost: Time.\nGain: +40 Energy, -20 Stress, +5 Health/Happy.", "rest", "#3498db"),
-            createActionCard("🧘 Meditate",            "Cost: Time.\nGain: -30 Stress, +15 Energy, +10 Happy/Motiv.", "meditate", "#58a6ff"),
-            createActionCard("🌐 Network",             "Cost: $150.\nGain: +8 Rep, +5 Rel, +5 Motivation.", "network", "#d29922"),
-            createActionCard("💻 Freelance Work",      "Cost: 25 Energy, ~10 Stress.\nGain: High Pay (based on Know), +2 Know.", "freelance", "#3fb950")
+            createActionCard("💼 Go to Work",         "Cost: 20 Energy, ~15 Stress.\nGain: Money (based on Know), +1 Rep.", "work", "#00ffcc"),
+            createActionCard("📚 Read & Study",       "Cost: $50, 15 Energy, ~5 Stress.\nGain: +10 Knowledge, +3 Motivation.", "study", "#a855f7"),
+            createActionCard("🏋️ Go to Gym",          "Cost: $20, 10 Energy.\nGain: +15 Health, -15 Stress, +5 Conf.", "gym", "#ffcc00"),
+            createActionCard("🤝 Hang out with Friends","Cost: $100, 15 Energy.\nGain: +10 Rel, +20 Happy, -10 Stress.", "socialize", "#ff3366"),
+            createActionCard("😴 Sleep & Rest",       "Cost: Time.\nGain: +40 Energy, -20 Stress, +5 Health/Happy.", "rest", "#3498db"),
+            createActionCard("🧘 Meditate & Relax",   "Cost: Time.\nGain: -30 Stress, +15 Energy, +10 Happy/Motiv.", "meditate", "#58a6ff"),
+            createActionCard("🌐 Networking Event",   "Cost: $150.\nGain: +8 Rep, +5 Rel, +5 Motivation.", "network", "#d29922"),
+            createActionCard("💻 Freelance Project",  "Cost: 25 Energy, ~10 Stress.\nGain: High Pay (based on Know), +2 Know.", "freelance", "#3fb950")
         );
 
         if (gameData != null && gameData.has("stats") && gameData.get("stats").get("money").asDouble() < 100) {

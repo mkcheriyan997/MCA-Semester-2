@@ -476,12 +476,7 @@ public class MiniGameScreen {
     }
 
     // ─── TYPING HUSTLE ────────────────────────────────────────────────────────
-    private static final String[] TYPING_WORDS = {
-        "budget", "invest", "portfolio", "dividend", "equity", "liability", "asset", 
-        "capital", "interest", "mortgage", "inflation", "revenue", "profit", "margin",
-        "market", "bull", "bear", "stock", "bond", "crypto", "savings", "tax", "audit"
-    };
-
+    // ─── TYPING HUSTLE ────────────────────────────────────────────────────────
     public void showTypingHustle(Stage owner, Runnable onComplete) {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -494,9 +489,9 @@ public class MiniGameScreen {
 
         Label title = new Label("⌨️ DATA ENTRY HUSTLE");
         title.setStyle("-fx-text-fill: #ffcc00; -fx-font-size: 26px; -fx-font-weight: bold;");
-        Label instruction = new Label("Type correctly to earn. Mistakes deduct score!");
+        Label instruction = new Label("Difficulty increases! Earn +2s per word. Mistakes deduct time!");
         instruction.setStyle("-fx-text-fill: #8b949e; -fx-font-size: 16px;");
-        Label timerLbl = new Label("Time: 30s");
+        Label timerLbl = new Label("Time: 20s");
         timerLbl.setStyle("-fx-text-fill: #f85149; -fx-font-size: 20px; -fx-font-weight: bold;");
         Label scoreLbl = new Label("Score: 0");
         scoreLbl.setStyle("-fx-text-fill: #3fb950; -fx-font-size: 20px; -fx-font-weight: bold;");
@@ -514,23 +509,37 @@ public class MiniGameScreen {
         Button startBtn = new Button("START HUSTLE");
         startBtn.setStyle("-fx-background-color: #ffcc00; -fx-text-fill: black; -fx-font-weight: bold; -fx-font-size: 16px; -fx-padding: 10 30;");
 
-        final int[] time = {30};
+        final int[] time = {20};
         final int[] typeScore = {0};
         final String[] currentWord = {""};
+
+        Runnable pickNextWord = () -> {
+            int totalWords = TypingData.WORDS.length;
+            int windowSize = Math.min(1000, totalWords);
+            int maxBase = totalWords - windowSize;
+            int baseIndex = Math.min(maxBase, (typeScore[0] / 5) * 100); 
+            baseIndex = Math.max(0, baseIndex);
+            
+            int randOffset = new Random().nextInt(windowSize);
+            currentWord[0] = TypingData.WORDS[baseIndex + randOffset];
+            targetWordLbl.setText(currentWord[0]);
+        };
 
         Timeline timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
             time[0]--;
             timerLbl.setText("Time: " + time[0] + "s");
-            if (time[0] <= 0) { inputField.setDisable(true); showTypingResult(stage, typeScore[0], onComplete); }
+            if (time[0] <= 0) { 
+                inputField.setDisable(true); 
+                showTypingResult(stage, typeScore[0], onComplete); 
+            }
         }));
-        timer.setCycleCount(30);
+        timer.setCycleCount(Timeline.INDEFINITE);
 
         startBtn.setOnAction(e -> {
             startBtn.setVisible(false); inputField.setDisable(false); inputField.requestFocus();
-            time[0] = 30; typeScore[0] = 0;
-            scoreLbl.setText("Score: 0"); timerLbl.setText("Time: 30s");
-            currentWord[0] = TYPING_WORDS[new Random().nextInt(TYPING_WORDS.length)];
-            targetWordLbl.setText(currentWord[0]);
+            time[0] = 20; typeScore[0] = 0;
+            scoreLbl.setText("Score: 0"); timerLbl.setText("Time: 20s");
+            pickNextWord.run();
             timer.playFromStart();
         });
 
@@ -539,8 +548,8 @@ public class MiniGameScreen {
                 String target = currentWord[0].toLowerCase();
                 String input = newV.trim().toLowerCase();
                 if (!target.startsWith(input)) {
-                    typeScore[0] = Math.max(-50, typeScore[0] - 1);
-                    scoreLbl.setText("Score: " + typeScore[0]);
+                    time[0] = Math.max(0, time[0] - 1);
+                    timerLbl.setText("Time: " + time[0] + "s");
                     inputField.setStyle("-fx-font-size: 24px; -fx-background-color: #4d1f1f; -fx-text-fill: #f85149; -fx-alignment: center;");
                 } else {
                     inputField.setStyle("-fx-font-size: 24px; -fx-background-color: #161b22; -fx-text-fill: #cdd9e5; -fx-alignment: center;");
@@ -548,10 +557,11 @@ public class MiniGameScreen {
             }
             if (newV.trim().equalsIgnoreCase(currentWord[0])) {
                 typeScore[0] += 5;
+                time[0] += 2;
                 scoreLbl.setText("Score: " + typeScore[0]);
+                timerLbl.setText("Time: " + time[0] + "s");
                 inputField.setText("");
-                currentWord[0] = TYPING_WORDS[new Random().nextInt(TYPING_WORDS.length)];
-                targetWordLbl.setText(currentWord[0]);
+                pickNextWord.run();
             }
         });
 
@@ -562,11 +572,12 @@ public class MiniGameScreen {
         Platform.runLater(() -> {
             Alert instr = new Alert(Alert.AlertType.INFORMATION);
             instr.setTitle("Typing Hustle Instructions");
-            instr.setHeaderText("⌨️ Speed and Accuracy");
-            instr.setContentText("Type the financial words as fast as you can!\n\n" +
-                    "• Word: +5 pts.\n" +
-                    "• Mistake: -1 pt penalty.\n" +
-                    "• Reward: $20 per word and Reputation boost.");
+            instr.setHeaderText("⌨️ Escalating Speed and Accuracy");
+            instr.setContentText("Type the words as fast as you can!\n\n" +
+                    "• The words get longer and harder as you score higher.\n" +
+                    "• Complete a word: +5 pts and +2 seconds of time.\n" +
+                    "• Make a mistake: -1 second penalty.\n" +
+                    "• Game ends when time runs out.");
             instr.showAndWait();
         });
     }

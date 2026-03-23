@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GameService {
-    private static final String API_URL = "http://localhost:8080/api/game";
+    private static final String API_URL = "http://localhost:8081/api/game";
     private static final HttpClient client = HttpClient.newHttpClient();
     private static final ObjectMapper mapper = new ObjectMapper();
 
