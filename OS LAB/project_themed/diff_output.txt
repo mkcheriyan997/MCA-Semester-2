@@ -1,0 +1,611 @@
+Only in /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed: diff_output.txt
+diff -r "/home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/ui/CharacterCreationScreen.java" /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/ui/CharacterCreationScreen.java
+26c26
+<         root.setStyle("-fx-background-color: linear-gradient(to bottom right, #f4f7f6, #e0e5ec); -fx-padding: 40;");
+---
+>         root.setStyle("-fx-background-color: #1a1a2e; -fx-padding: 40;");
+28,35c28,30
+<         VBox card = new VBox(20);
+<         card.setAlignment(Pos.CENTER);
+<         card.setMaxWidth(450);
+<         card.setStyle("-fx-background-color: white; -fx-padding: 40; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 15, 0, 0, 5);");
+< 
+<         Label title = new Label("Initialize New Life");
+<         title.setFont(Font.font("Segoe UI", FontWeight.BOLD, 32));
+<         title.setStyle("-fx-text-fill: #2c3e50;");
+---
+>         Label title = new Label("INITIALIZE_NEW_LIFE");
+>         title.setFont(Font.font("Consolas", FontWeight.BOLD, 36));
+>         title.setStyle("-fx-text-fill: #00ffcc;");
+38c33
+<         nameField.setPromptText("Enter Player Name...");
+---
+>         nameField.setPromptText("Enter Player Designation...");
+40,41c35
+<         nameField.setPrefHeight(45);
+<         nameField.setStyle("-fx-font-size: 16px; -fx-background-color: #f8f9fa; -fx-text-fill: #495057; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6;");
+---
+>         nameField.setStyle("-fx-font-size: 18px; -fx-background-color: #16213e; -fx-text-fill: white; -fx-border-color: #0f3460; -fx-border-width: 2;");
+44c38
+<         instruction.setStyle("-fx-text-fill: #7f8c8d; -fx-font-size: 16px;");
+---
+>         instruction.setStyle("-fx-text-fill: #e94560; -fx-font-size: 18px;");
+54,60c48,51
+<         traitBox.setPrefHeight(40);
+<         traitBox.setMaxWidth(400);
+<         traitBox.setStyle("-fx-font-size: 15px; -fx-background-color: #f8f9fa; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6;");
+< 
+<         Button startBtn = new Button("Start Journey");
+<         startBtn.setStyle("-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 18px; -fx-padding: 12 30; -fx-background-radius: 6; -fx-cursor: hand;");
+<         startBtn.setMaxWidth(400);
+---
+>         traitBox.setStyle("-fx-font-size: 16px; -fx-background-color: #16213e;");
+> 
+>         Button startBtn = new Button("BOOT_SEQUENCE");
+>         startBtn.setStyle("-fx-background-color: #e94560; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 20px; -fx-padding: 10 30;");
+71,72c62
+<         card.getChildren().addAll(title, nameField, instruction, traitBox, startBtn);
+<         root.getChildren().add(card);
+---
+>         root.getChildren().addAll(title, nameField, instruction, traitBox, startBtn);
+diff -r "/home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/ui/DashboardScreen.java" /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/ui/DashboardScreen.java
+47c47
+<         root.setStyle("-fx-background-color: #f4f7f6;");
+---
+>         root.setStyle("-fx-background-color: #0f0f1b;");
+53d52
+<         topBar.setStyle("-fx-background-color: white; -fx-padding: 10 20; -fx-background-radius: 8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 2);");
+55,57c54,56
+<         Label title = new Label("LifeLoad Control Center");
+<         title.setFont(Font.font("Segoe UI", FontWeight.BOLD, 22));
+<         title.setTextFill(Color.web("#2c3e50"));
+---
+>         Label title = new Label("⚡ LIFELOAD // CONTROL_CENTER");
+>         title.setFont(Font.font("Consolas", FontWeight.BOLD, 22));
+>         title.setTextFill(Color.web("#00ffcc"));
+61c60
+<         Button timelineBtn = createTopBtn("📅 Timeline", "#ffffff", "#3498db");
+---
+>         Button timelineBtn = createTopBtn("📅 TIMELINE", "#58a6ff", "#0d2a47");
+64c63
+<         Button miniGameBtn = createTopBtn("🎮 Mini-Games", "#ffffff", "#f39c12");
+---
+>         Button miniGameBtn = createTopBtn("🎮 MINI-GAMES", "#d29922", "#2d1f00");
+67c66
+<         Button rewardBtn = createTopBtn("🎁 Daily Reward", "#ffffff", "#2ecc71");
+---
+>         Button rewardBtn = createTopBtn("🎁 DAILY REWARD", "#3fb950", "#0d2b17");
+70c69
+<         Button marketBtn = createTopBtn("📊 Market", "#ffffff", "#9b59b6");
+---
+>         Button marketBtn = createTopBtn("📊 MARKET", "#a855f7", "#1e0a40");
+73c72
+<         Button lbBtn = createTopBtn("🏆 Leaderboard", "#ffffff", "#f1c40f");
+---
+>         Button lbBtn = createTopBtn("🏆 BOARD", "#ffcc00", "#2b2400");
+76,77c75,76
+<         Button exitBtn = new Button("Exit");
+<         exitBtn.setStyle("-fx-background-color: transparent; -fx-text-fill: #e74c3c; -fx-border-color: #e74c3c; -fx-border-radius: 6; -fx-font-weight: bold; -fx-padding: 7 14; -fx-cursor: hand;");
+---
+>         Button exitBtn = new Button("✖ EXIT");
+>         exitBtn.setStyle("-fx-background-color: transparent; -fx-text-fill: #f85149; -fx-border-color: #f85149; -fx-font-weight: bold; -fx-padding: 7 14;");
+86c85
+<         statsPanel.setStyle("-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 2);");
+---
+>         statsPanel.setStyle("-fx-background-color: #1a1a2e; -fx-padding: 16; -fx-border-color: #0f3460; -fx-border-width: 0 1 0 0;");
+90c89
+<         statsScroll.setStyle("-fx-background: transparent; -fx-background-color: transparent; -fx-border-color: transparent;");
+---
+>         statsScroll.setStyle("-fx-background: #1a1a2e; -fx-background-color: #1a1a2e; -fx-border-color: transparent;");
+98c97
+<         actionScroll.setStyle("-fx-background: transparent; -fx-background-color: transparent; -fx-border-color: transparent;");
+---
+>         actionScroll.setStyle("-fx-background: #0f0f1b; -fx-background-color: #0f0f1b; -fx-border-color: transparent;");
+104,107c103,106
+<         rivalPanel.setStyle("-fx-background-color: white; -fx-background-radius: 8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 2);");
+<         Label rivalTitle = new Label("⚔️ Rivals");
+<         rivalTitle.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
+<         rivalTitle.setStyle("-fx-text-fill: #34495e;");
+---
+>         rivalPanel.setStyle("-fx-background-color: #16213e; -fx-border-color: #0f3460; -fx-border-width: 0 0 0 1;");
+>         Label rivalTitle = new Label("⚔️  RIVALS");
+>         rivalTitle.setFont(Font.font("Consolas", FontWeight.BOLD, 15));
+>         rivalTitle.setStyle("-fx-text-fill: #ff3366;");
+114c113
+<         rivalScroll.setStyle("-fx-background: transparent; -fx-background-color: transparent; -fx-border-color: transparent;");
+---
+>         rivalScroll.setStyle("-fx-background: #16213e; -fx-background-color: #16213e; -fx-border-color: transparent;");
+157d155
+<         ButtonType crashBtn = new ButtonType("📉 Market Crash");
+159c157
+<         menu.getButtonTypes().setAll(quizBtn, focusBtn, memoryBtn, typeBtn, crashBtn, cancelBtn);
+---
+>         menu.getButtonTypes().setAll(quizBtn, focusBtn, memoryBtn, typeBtn, cancelBtn);
+170,171d167
+<             } else if (choice == crashBtn) {
+<                 mg.showMarketCrash(stage, () -> updateUI(GameService.loadGame()));
+366c362
+<         nameLbl.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;");
+---
+>         nameLbl.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;");
+369c365
+<         ageLbl.setStyle("-fx-font-size: 14px; -fx-text-fill: #7f8c8d;");
+---
+>         ageLbl.setStyle("-fx-font-size: 14px; -fx-text-fill: #8b949e;");
+372c368
+<         moneyLbl.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #27ae60;");
+---
+>         moneyLbl.setStyle("-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #00ffcc;");
+375,378c371,374
+<         statsPanel.getChildren().add(createStatBar("❤️ Health",     stats.get("health").asDouble(),     "#2ecc71"));
+<         statsPanel.getChildren().add(createStatBar("⚡ Energy",      stats.get("energy").asDouble(),     "#f1c40f"));
+<         statsPanel.getChildren().add(createStatBar("😊 Happiness",   stats.get("happiness").asDouble(),  "#3498db"));
+<         statsPanel.getChildren().add(createStatBar("🔥 Stress",      stats.get("stress").asDouble(),     "#e74c3c"));
+---
+>         statsPanel.getChildren().add(createStatBar("❤️ Health",     stats.get("health").asDouble(),     "#3fb950"));
+>         statsPanel.getChildren().add(createStatBar("⚡ Energy",      stats.get("energy").asDouble(),     "#ffcc00"));
+>         statsPanel.getChildren().add(createStatBar("😊 Happiness",   stats.get("happiness").asDouble(),  "#58a6ff"));
+>         statsPanel.getChildren().add(createStatBar("🔥 Stress",      stats.get("stress").asDouble(),     "#f85149"));
+388c384
+<         VBox box = new VBox(6);
+---
+>         VBox box = new VBox(4);
+390c386
+<         lbl.setStyle("-fx-text-fill: #34495e; -fx-font-size: 14px; -fx-font-weight: bold;");
+---
+>         lbl.setStyle("-fx-text-fill: white; -fx-font-size: 13px;");
+393,394c389
+<         pb.setPrefHeight(12);
+<         pb.setStyle("-fx-accent: " + color + "; -fx-control-inner-background: #ecf0f1; -fx-background-radius: 6;");
+---
+>         pb.setStyle("-fx-accent: " + color + "; -fx-control-inner-background: #2a2a3e;");
+401c396
+<         lbl.setStyle("-fx-text-fill: #7f8c8d; -fx-font-size: 14px; -fx-font-weight: bold;");
+---
+>         lbl.setStyle("-fx-text-fill: #c0c0c0; -fx-font-size: 13px;");
+446c441
+<         card.setStyle("-fx-background-color: white; -fx-background-radius: 8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 2); -fx-padding: 16;");
+---
+>         card.setStyle("-fx-background-color: #1a1a2e; -fx-border-color: " + accentColor + "; -fx-border-width: 0 0 3 0; -fx-padding: 14;");
+449c444
+<         titleLbl.setStyle("-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #2c3e50;");
+---
+>         titleLbl.setStyle("-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: " + accentColor + ";");
+453c448
+<         descLbl.setStyle("-fx-text-fill: #7f8c8d; -fx-font-size: 13px;");
+---
+>         descLbl.setStyle("-fx-text-fill: #8b949e; -fx-font-size: 12px;");
+458,459c453,454
+<         Button btn = new Button("Execute Action");
+<         btn.setStyle("-fx-background-color: " + accentColor + "; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand; -fx-padding: 8 0;");
+---
+>         Button btn = new Button("▶  EXECUTE");
+>         btn.setStyle("-fx-background-color: " + accentColor + "; -fx-text-fill: #000; -fx-font-weight: bold; -fx-cursor: hand;");
+484c479
+<         btn.setStyle("-fx-background-color: " + bgColor + "; -fx-text-fill: " + textColor + "; -fx-font-weight: bold; -fx-padding: 8 16; -fx-background-radius: 6; -fx-font-size: 13px; -fx-cursor: hand; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 1);");
+---
+>         btn.setStyle("-fx-background-color: " + bgColor + "; -fx-text-fill: " + textColor + "; -fx-font-weight: bold; -fx-padding: 7 14; -fx-border-color: " + textColor + "44; -fx-font-size: 12px;");
+diff -r "/home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/ui/LoginScreen.java" /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/ui/LoginScreen.java
+23c23
+<         VBox root = new VBox(25);
+---
+>         VBox root = new VBox(20);
+25c25
+<         root.setStyle("-fx-background-color: linear-gradient(to bottom right, #f4f7f6, #e0e5ec); -fx-padding: 50;");
+---
+>         root.setStyle("-fx-background-color: #121212; -fx-padding: 40;");
+27,34c27,29
+<         VBox card = new VBox(20);
+<         card.setAlignment(Pos.CENTER);
+<         card.setMaxWidth(400);
+<         card.setStyle("-fx-background-color: white; -fx-padding: 40; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 15, 0, 0, 5);");
+< 
+<         Label title = new Label("LifeLoad Simulator");
+<         title.setFont(Font.font("Segoe UI", FontWeight.BOLD, 28));
+<         title.setStyle("-fx-text-fill: #2c3e50;");
+---
+>         Label title = new Label("LIFELOAD SIMULATOR");
+>         title.setFont(Font.font("Segoe UI", FontWeight.BOLD, 36));
+>         title.setStyle("-fx-text-fill: #00e5ff;");
+38,39c33,34
+<         userField.setPrefHeight(45);
+<         userField.setStyle("-fx-font-size: 14px; -fx-background-color: #f8f9fa; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #495057;");
+---
+>         userField.setMaxWidth(300);
+>         userField.setStyle("-fx-font-size: 16px; -fx-background-color: #2c2f33; -fx-text-fill: white;");
+43,44c38,39
+<         passField.setPrefHeight(45);
+<         passField.setStyle("-fx-font-size: 14px; -fx-background-color: #f8f9fa; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #495057;");
+---
+>         passField.setMaxWidth(300);
+>         passField.setStyle("-fx-font-size: 16px; -fx-background-color: #2c2f33; -fx-text-fill: white;");
+47c42
+<         errorLbl.setStyle("-fx-text-fill: #e74c3c; -fx-font-size: 13px;");
+---
+>         errorLbl.setStyle("-fx-text-fill: #ff3366;");
+49,52c44,46
+<         Button loginBtn = new Button("Sign In");
+<         loginBtn.setStyle("-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-background-radius: 6; -fx-cursor: hand;");
+<         loginBtn.setPrefWidth(Double.MAX_VALUE);
+<         loginBtn.setPrefHeight(45);
+---
+>         Button loginBtn = new Button("LOGIN");
+>         loginBtn.setStyle("-fx-background-color: #00e5ff; -fx-text-fill: black; -fx-font-weight: bold; -fx-font-size: 16px;");
+>         loginBtn.setPrefWidth(300);
+63c57
+<         regLink.setStyle("-fx-text-fill: #7f8c8d; -fx-font-size: 14px;");
+---
+>         regLink.setStyle("-fx-text-fill: #b9bbbe;");
+66,67c60
+<         card.getChildren().addAll(title, userField, passField, errorLbl, loginBtn, regLink);
+<         root.getChildren().add(card);
+---
+>         root.getChildren().addAll(title, userField, passField, errorLbl, loginBtn, regLink);
+diff -r "/home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/ui/MiniGameScreen.java" /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/ui/MiniGameScreen.java
+488c488
+<         root.setStyle("-fx-background-color: #f4f7f6; -fx-padding: 40;");
+---
+>         root.setStyle("-fx-background-color: #0d1117; -fx-padding: 40;");
+491,495c491,495
+<         title.setStyle("-fx-text-fill: #e67e22; -fx-font-size: 26px; -fx-font-weight: bold;");
+<         Label instruction = new Label("Insane difficulty! Time drains faster. Mistakes are lethal.");
+<         instruction.setStyle("-fx-text-fill: #e74c3c; -fx-font-size: 16px; -fx-font-weight: bold;");
+<         Label timerLbl = new Label("Time: 15.0s");
+<         timerLbl.setStyle("-fx-text-fill: #c0392b; -fx-font-size: 20px; -fx-font-weight: bold;");
+---
+>         title.setStyle("-fx-text-fill: #ffcc00; -fx-font-size: 26px; -fx-font-weight: bold;");
+>         Label instruction = new Label("Difficulty increases! Earn +2s per word. Mistakes deduct time!");
+>         instruction.setStyle("-fx-text-fill: #8b949e; -fx-font-size: 16px;");
+>         Label timerLbl = new Label("Time: 20s");
+>         timerLbl.setStyle("-fx-text-fill: #f85149; -fx-font-size: 20px; -fx-font-weight: bold;");
+497c497
+<         scoreLbl.setStyle("-fx-text-fill: #27ae60; -fx-font-size: 20px; -fx-font-weight: bold;");
+---
+>         scoreLbl.setStyle("-fx-text-fill: #3fb950; -fx-font-size: 20px; -fx-font-weight: bold;");
+502c502
+<         targetWordLbl.setStyle("-fx-text-fill: #2c3e50; -fx-font-size: 32px; -fx-font-weight: bold; -fx-background-color: white; -fx-padding: 15 40; -fx-border-color: #bdc3c7; -fx-border-width: 2; -fx-background-radius: 8; -fx-border-radius: 8;");
+---
+>         targetWordLbl.setStyle("-fx-text-fill: white; -fx-font-size: 32px; -fx-font-weight: bold; -fx-background-color: #21262d; -fx-padding: 10 30; -fx-border-color: #30363d; -fx-border-width: 2;");
+506,507c506,507
+<         inputField.setStyle("-fx-font-size: 24px; -fx-background-color: #ecf0f1; -fx-text-fill: #2c3e50; -fx-alignment: center; -fx-background-radius: 8; -fx-border-color: #bdc3c7; -fx-border-radius: 8;");
+<         inputField.setMaxWidth(350);
+---
+>         inputField.setStyle("-fx-font-size: 24px; -fx-background-color: #161b22; -fx-text-fill: #cdd9e5; -fx-alignment: center;");
+>         inputField.setMaxWidth(300);
+510c510
+<         startBtn.setStyle("-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px; -fx-padding: 12 35; -fx-background-radius: 6; -fx-cursor: hand;");
+---
+>         startBtn.setStyle("-fx-background-color: #ffcc00; -fx-text-fill: black; -fx-font-weight: bold; -fx-font-size: 16px; -fx-padding: 10 30;");
+512c512
+<         final double[] time = {15.0};
+---
+>         final int[] time = {20};
+518c518,520
+<             int baseIndex = Math.min(totalWords - 100, (typeScore[0] * 5)); 
+---
+>             int windowSize = Math.min(1000, totalWords);
+>             int maxBase = totalWords - windowSize;
+>             int baseIndex = Math.min(maxBase, (typeScore[0] / 5) * 100); 
+521c523
+<             int randOffset = new Random().nextInt(100);
+---
+>             int randOffset = new Random().nextInt(windowSize);
+526,529c528,530
+<         Timeline timer = new Timeline(new KeyFrame(Duration.millis(16), e -> {
+<             double drainRate = 0.016 + (typeScore[0] * 0.0015);
+<             time[0] -= drainRate;
+<             timerLbl.setText(String.format("Time: %.1fs", time[0]));
+---
+>         Timeline timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+>             time[0]--;
+>             timerLbl.setText("Time: " + time[0] + "s");
+539,540c540,541
+<             time[0] = 15.0; typeScore[0] = 0;
+<             scoreLbl.setText("Score: 0"); timerLbl.setText("Time: 15.0s");
+---
+>             time[0] = 20; typeScore[0] = 0;
+>             scoreLbl.setText("Score: 0"); timerLbl.setText("Time: 20s");
+550,553c551,553
+<                     time[0] = Math.max(0, time[0] - 2.5);
+<                     timerLbl.setText(String.format("Time: %.1fs", time[0]));
+<                     inputField.setStyle("-fx-font-size: 24px; -fx-background-color: #fce4e4; -fx-text-fill: #c0392b; -fx-alignment: center; -fx-background-radius: 8; -fx-border-color: #e74c3c; -fx-border-width: 2; -fx-border-radius: 8;");
+<                     Platform.runLater(() -> inputField.setText(""));
+---
+>                     time[0] = Math.max(0, time[0] - 1);
+>                     timerLbl.setText("Time: " + time[0] + "s");
+>                     inputField.setStyle("-fx-font-size: 24px; -fx-background-color: #4d1f1f; -fx-text-fill: #f85149; -fx-alignment: center;");
+555c555
+<                     inputField.setStyle("-fx-font-size: 24px; -fx-background-color: white; -fx-text-fill: #2c3e50; -fx-alignment: center; -fx-background-radius: 8; -fx-border-color: #27ae60; -fx-border-width: 2; -fx-border-radius: 8;");
+---
+>                     inputField.setStyle("-fx-font-size: 24px; -fx-background-color: #161b22; -fx-text-fill: #cdd9e5; -fx-alignment: center;");
+560,561c560
+<                 double timeBonus = Math.max(0.5, 2.0 - (typeScore[0] * 0.02));
+<                 time[0] += timeBonus;
+---
+>                 time[0] += 2;
+562a562
+>                 timerLbl.setText("Time: " + time[0] + "s");
+564d563
+<                 inputField.setStyle("-fx-font-size: 24px; -fx-background-color: #ecf0f1; -fx-text-fill: #2c3e50; -fx-alignment: center; -fx-background-radius: 8; -fx-border-color: #bdc3c7; -fx-border-radius: 8;");
+574,581c573,580
+<             Alert instr = new Alert(Alert.AlertType.WARNING);
+<             instr.setTitle("Typing Hustle: HARDCORE");
+<             instr.setHeaderText("🔥 Welcome to Hardcore Mode");
+<             instr.setContentText("This is not a drill.\n\n" +
+<                     "• The clock drains FASTER the higher you score.\n" +
+<                     "• Time rewards SHRINK as you progress.\n" +
+<                     "• Make a mistake? You lose 2.5 seconds AND have to restart the word.\n" +
+<                     "• Good luck.");
+---
+>             Alert instr = new Alert(Alert.AlertType.INFORMATION);
+>             instr.setTitle("Typing Hustle Instructions");
+>             instr.setHeaderText("⌨️ Escalating Speed and Accuracy");
+>             instr.setContentText("Type the words as fast as you can!\n\n" +
+>                     "• The words get longer and harder as you score higher.\n" +
+>                     "• Complete a word: +5 pts and +2 seconds of time.\n" +
+>                     "• Make a mistake: -1 second penalty.\n" +
+>                     "• Game ends when time runs out.");
+587c586
+<         VBox res = new VBox(20); res.setAlignment(Pos.CENTER); res.setStyle("-fx-background-color: #f4f7f6; -fx-padding: 40;");
+---
+>         VBox res = new VBox(20); res.setAlignment(Pos.CENTER); res.setStyle("-fx-background-color: #0d1117; -fx-padding: 40;");
+589c588
+<         title.setStyle("-fx-text-fill: #e67e22; -fx-font-size: 28px; -fx-font-weight: bold;");
+---
+>         title.setStyle("-fx-text-fill: #ffcc00; -fx-font-size: 28px; -fx-font-weight: bold;");
+591,593c590,592
+<         scoreLbl.setStyle("-fx-text-fill: #2c3e50; -fx-font-size: 20px; -fx-font-weight: bold;");
+<         Button collect = new Button("Collect Paycheck");
+<         collect.setStyle("-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 35; -fx-background-radius: 6; -fx-cursor: hand;");
+---
+>         scoreLbl.setStyle("-fx-text-fill: white; -fx-font-size: 20px;");
+>         Button collect = new Button("COLLECT PAYCHECK");
+>         collect.setStyle("-fx-background-color: #238636; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 30;");
+diff -r "/home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/ui/RegisterScreen.java" /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/ui/RegisterScreen.java
+23c23
+<         VBox root = new VBox(25);
+---
+>         VBox root = new VBox(20);
+25c25
+<         root.setStyle("-fx-background-color: linear-gradient(to bottom right, #f4f7f6, #e0e5ec); -fx-padding: 50;");
+---
+>         root.setStyle("-fx-background-color: #121212; -fx-padding: 40;");
+27,34c27,29
+<         VBox card = new VBox(20);
+<         card.setAlignment(Pos.CENTER);
+<         card.setMaxWidth(400);
+<         card.setStyle("-fx-background-color: white; -fx-padding: 40; -fx-background-radius: 12; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 15, 0, 0, 5);");
+< 
+<         Label title = new Label("Create Profile");
+<         title.setFont(Font.font("Segoe UI", FontWeight.BOLD, 28));
+<         title.setStyle("-fx-text-fill: #2c3e50;");
+---
+>         Label title = new Label("CREATE PROFILE");
+>         title.setFont(Font.font("Segoe UI", FontWeight.BOLD, 32));
+>         title.setStyle("-fx-text-fill: #00e5ff;");
+38,39c33,34
+<         userField.setPrefHeight(45);
+<         userField.setStyle("-fx-font-size: 14px; -fx-background-color: #f8f9fa; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #495057;");
+---
+>         userField.setMaxWidth(300);
+>         userField.setStyle("-fx-font-size: 16px; -fx-background-color: #2c2f33; -fx-text-fill: white;");
+43,44c38,39
+<         emailField.setPrefHeight(45);
+<         emailField.setStyle("-fx-font-size: 14px; -fx-background-color: #f8f9fa; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #495057;");
+---
+>         emailField.setMaxWidth(300);
+>         emailField.setStyle("-fx-font-size: 16px; -fx-background-color: #2c2f33; -fx-text-fill: white;");
+48,49c43,44
+<         passField.setPrefHeight(45);
+<         passField.setStyle("-fx-font-size: 14px; -fx-background-color: #f8f9fa; -fx-border-color: #ced4da; -fx-border-radius: 6; -fx-background-radius: 6; -fx-text-fill: #495057;");
+---
+>         passField.setMaxWidth(300);
+>         passField.setStyle("-fx-font-size: 16px; -fx-background-color: #2c2f33; -fx-text-fill: white;");
+52c47
+<         msgLbl.setStyle("-fx-text-fill: #e74c3c; -fx-font-size: 13px;");
+---
+>         msgLbl.setStyle("-fx-text-fill: #ff3366;");
+54,57c49,51
+<         Button regBtn = new Button("Register");
+<         regBtn.setStyle("-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-background-radius: 6; -fx-cursor: hand;");
+<         regBtn.setPrefWidth(Double.MAX_VALUE);
+<         regBtn.setPrefHeight(45);
+---
+>         Button regBtn = new Button("REGISTER");
+>         regBtn.setStyle("-fx-background-color: #00e5ff; -fx-text-fill: black; -fx-font-weight: bold; -fx-font-size: 16px;");
+>         regBtn.setPrefWidth(300);
+61c55
+<                 msgLbl.setStyle("-fx-text-fill: #2ecc71; -fx-font-size: 13px;");
+---
+>                 msgLbl.setStyle("-fx-text-fill: #00e5ff;");
+68c62
+<                 msgLbl.setStyle("-fx-text-fill: #e74c3c; -fx-font-size: 13px;");
+---
+>                 msgLbl.setStyle("-fx-text-fill: #ff3366;");
+74c68
+<         backLink.setStyle("-fx-text-fill: #7f8c8d; -fx-font-size: 14px;");
+---
+>         backLink.setStyle("-fx-text-fill: #b9bbbe;");
+77,78c71
+<         card.getChildren().addAll(title, userField, emailField, passField, msgLbl, regBtn, backLink);
+<         root.getChildren().add(card);
+---
+>         root.getChildren().addAll(title, userField, emailField, passField, msgLbl, regBtn, backLink);
+Only in /home/user/Pictures/MCA-Semester-2/project/lifeload-client/target/classes/com/lifeload/client/ui: CharacterCreationScreen.class
+Only in /home/user/Pictures/MCA-Semester-2/project/lifeload-client/target/classes/com/lifeload/client/ui: DashboardScreen.class
+Only in /home/user/Pictures/MCA-Semester-2/project/lifeload-client/target/classes/com/lifeload/client/ui: LeaderboardScreen.class
+Only in /home/user/Pictures/MCA-Semester-2/project/lifeload-client/target/classes/com/lifeload/client/ui: LoginScreen.class
+Only in /home/user/Pictures/MCA-Semester-2/project/lifeload-client/target/classes/com/lifeload/client/ui: MarketScreen.class
+Only in /home/user/Pictures/MCA-Semester-2/project/lifeload-client/target/classes/com/lifeload/client/ui: MiniGameScreen$1Option.class
+Only in /home/user/Pictures/MCA-Semester-2/project/lifeload-client/target/classes/com/lifeload/client/ui: MiniGameScreen.class
+Only in /home/user/Pictures/MCA-Semester-2/project/lifeload-client/target/classes/com/lifeload/client/ui: RegisterScreen.class
+Only in /home/user/Pictures/MCA-Semester-2/project/lifeload-client/target/classes/com/lifeload/client/ui: TimelineScreen.class
+Only in /home/user/Pictures/MCA-Semester-2/project/lifeload-client/target/classes/com/lifeload/client/ui: TypingData.class
+diff -r "/home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" /home/user/Pictures/MCA-Semester-2/project/lifeload-client/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+1,2c1
+< com/lifeload/client/service/GameService.class
+< com/lifeload/client/ui/QuizData.class
+---
+> com/lifeload/client/ui/CharacterCreationScreen.class
+3a3,6
+> com/lifeload/client/ui/LeaderboardScreen.class
+> com/lifeload/client/ui/MarketScreen.class
+> com/lifeload/client/ui/TypingData.class
+> com/lifeload/client/ui/TimelineScreen.class
+4a8,13
+> com/lifeload/client/service/GameService.class
+> com/lifeload/client/ui/MiniGameScreen$1Option.class
+> com/lifeload/client/ui/RegisterScreen.class
+> com/lifeload/client/ui/QuizData.class
+> com/lifeload/client/ui/MiniGameScreen.class
+> com/lifeload/client/ui/LoginScreen.class
+5a15
+> com/lifeload/client/ui/DashboardScreen.class
+diff -r "/home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" /home/user/Pictures/MCA-Semester-2/project/lifeload-client/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+1,14c1,14
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/service/AuthService.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/ui/QuizData.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/service/GameService.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/ui/LeaderboardScreen.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/ui/MiniGameScreen.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/LifeLoadApp.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/ui/DashboardScreen.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/service/SessionManager.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/ui/LoginScreen.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/ui/CharacterCreationScreen.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/ui/TimelineScreen.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/ui/RegisterScreen.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/ui/MarketScreen.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-client/src/main/java/com/lifeload/client/ui/TypingData.java
+---
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/ui/RegisterScreen.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/LifeLoadApp.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/ui/TimelineScreen.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/service/GameService.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/ui/CharacterCreationScreen.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/ui/MarketScreen.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/ui/LeaderboardScreen.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/service/SessionManager.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/ui/LoginScreen.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/ui/DashboardScreen.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/ui/TypingData.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/ui/QuizData.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/service/AuthService.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-client/src/main/java/com/lifeload/client/ui/MiniGameScreen.java
+Only in /home/user/Pictures/MCA-Semester-2/project/lifeload-server/target: lifeload-server-1.0.0.jar
+Only in /home/user/Pictures/MCA-Semester-2/project/lifeload-server/target: lifeload-server-1.0.0.jar.original
+Only in /home/user/Pictures/MCA-Semester-2/project/lifeload-server/target: maven-archiver
+diff -r "/home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" /home/user/Pictures/MCA-Semester-2/project/lifeload-server/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+1,55c1,55
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/payload/request/EventChoiceRequest.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/repository/TraitRepository.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/payload/request/LoginRequest.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/engine/event/EventEngine.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/entity/Skill.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/entity/NpcRival.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/repository/UserRepository.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/payload/request/ActionRequest.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/repository/GameHistoryRepository.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/repository/DailyRewardRepository.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/controller/LeaderboardController.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/entity/PlayerAchievement.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/payload/request/SignupRequest.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/entity/GameHistory.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/security/services/UserDetailsServiceImpl.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/controller/GameController.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/entity/User.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/entity/Achievement.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/controller/EconomyController.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/repository/InvestmentRepository.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/entity/TimelineEvent.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/entity/Investment.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/security/jwt/JwtUtils.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/repository/PlayerSkillRepository.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/entity/GameEvent.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/entity/PlayerProfile.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/repository/PlayerProfileRepository.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/entity/StatImpact.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/security/services/UserDetailsImpl.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/security/jwt/AuthTokenFilter.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/entity/PlayerStats.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/repository/LeaderboardEntryRepository.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/security/WebSecurityConfig.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/engine/AchievementManager.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/repository/AchievementRepository.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/engine/SkillManager.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/entity/EventOption.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/repository/SkillRepository.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/engine/RivalService.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/entity/Trait.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/entity/PlayerSkill.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/entity/LeaderboardEntry.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/security/jwt/AuthEntryPointJwt.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/config/DatabaseSeeder.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/repository/GameEventRepository.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/payload/response/JwtResponse.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/repository/NpcRivalRepository.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/payload/response/MessageResponse.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/repository/TimelineEventRepository.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/entity/DailyReward.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/controller/AuthController.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/LifeLoadServerApplication.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/engine/action/ActionProcessor.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/engine/economy/EconomyEngine.java
+< /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed/lifeload-server/src/main/java/com/lifeload/server/repository/PlayerAchievementRepository.java
+---
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/engine/event/EventEngine.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/security/jwt/AuthTokenFilter.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/entity/GameEvent.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/entity/User.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/engine/AchievementManager.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/entity/PlayerAchievement.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/entity/Investment.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/payload/response/MessageResponse.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/engine/economy/EconomyEngine.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/controller/EconomyController.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/payload/request/EventChoiceRequest.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/controller/AuthController.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/security/WebSecurityConfig.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/LifeLoadServerApplication.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/entity/Skill.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/repository/PlayerProfileRepository.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/entity/NpcRival.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/repository/GameEventRepository.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/entity/PlayerProfile.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/payload/request/SignupRequest.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/entity/Achievement.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/entity/PlayerStats.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/payload/response/JwtResponse.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/engine/SkillManager.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/security/jwt/AuthEntryPointJwt.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/repository/PlayerAchievementRepository.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/entity/TimelineEvent.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/config/DatabaseSeeder.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/engine/action/ActionProcessor.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/entity/EventOption.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/entity/PlayerSkill.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/security/services/UserDetailsImpl.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/controller/GameController.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/entity/GameHistory.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/repository/LeaderboardEntryRepository.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/repository/InvestmentRepository.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/entity/StatImpact.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/security/jwt/JwtUtils.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/entity/Trait.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/repository/TimelineEventRepository.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/controller/LeaderboardController.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/repository/DailyRewardRepository.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/security/services/UserDetailsServiceImpl.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/repository/AchievementRepository.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/repository/NpcRivalRepository.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/payload/request/ActionRequest.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/engine/RivalService.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/repository/GameHistoryRepository.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/repository/SkillRepository.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/payload/request/LoginRequest.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/repository/UserRepository.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/entity/LeaderboardEntry.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/repository/PlayerSkillRepository.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/entity/DailyReward.java
+> /home/user/Pictures/MCA-Semester-2/project/lifeload-server/src/main/java/com/lifeload/server/repository/TraitRepository.java
+Only in /home/user/Desktop/MCA-Semester-2/OS LAB/project_themed: server.log
